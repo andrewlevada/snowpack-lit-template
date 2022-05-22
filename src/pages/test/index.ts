@@ -12,7 +12,7 @@ export default class TestPage extends AppPageElement {
         return html`
             <div class="container">
                 <h1>Hello!</h1>
-                <persistent-a>Let's go to 404</persistent-a>
+                <persistent-a href="/page">Let's go to 404</persistent-a>
             </div>
         `;
     }

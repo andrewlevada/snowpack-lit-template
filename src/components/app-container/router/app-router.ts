@@ -36,6 +36,8 @@ export class AppRouter extends LitElement {
     connectedCallback() {
         super.connectedCallback();
         this.updatePage();
+        window.addEventListener("popstate", () => this.updatePage());
+        window.addEventListener("history_push", () => this.updatePage());
     }
 
     private updatePage(): void {

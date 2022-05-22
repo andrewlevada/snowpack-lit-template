@@ -1,4 +1,4 @@
-import { css, CSSResultGroup, LitElement, TemplateResult } from "lit";
+import { css, LitElement, TemplateResult } from "lit";
 import { html } from "lit/static-html.js";
 import { property } from "lit/decorators.js";
 import { componentStyles } from "~src/global";
@@ -17,15 +17,16 @@ export class PersistentAnchor extends LitElement {
     }
 
     private onClick(): void {
+        if (!this.href) throw new Error("No href provided to persistent anchor");
         window.history.pushState(null, "", `/app${this.href}`);
         window.dispatchEvent(new Event("history_push"));
     }
 
-    static get styles(): CSSResultGroup {
-        return [...componentStyles, css`
-          a {
-            display: flex;
-          }
-        `];
-    }
+    static styles = [...componentStyles, css`
+      a {
+        display: flex;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    `]
 }
